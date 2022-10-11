@@ -1,0 +1,256 @@
+.message-portion {
+    color: #d1d2b9;
+    background-color: #1a1d21;
+    padding: 1%;
+}
+
+.message-header {
+    height: 6vh;
+    width: 100%;
+    font-weight: bold;
+    font-size: x-large;
+    padding-left: 3%;
+    border-bottom: 1px solid grey;
+}
+
+.message-output {
+    width: 100%;
+    height: 72vh;
+    overflow-y: scroll;
+    margin-bottom: 10px;
+    border-bottom: 1px dotted grey;
+    position: relative;
+}
+
+.message-output::-webkit-scrollbar {
+    display: none;
+}
+
+.date-div {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 1%;
+    position: absolute;
+    z-index: 10;
+    top: -24px;
+}
+
+.date-text {
+    border: 1px solid grey;
+    padding: 0% 2% 0% 2%;
+    border-radius: 20px;
+    background-color: #1a1d21;
+}
+
+.no-messages {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.message-row {
+    width: 100%;
+    display: flex;
+}
+
+.message-row:hover {
+    background-color: #222529;
+}
+
+.message-img {
+    width: 3%;
+}
+
+.message-img img {
+    width: 100%;
+    margin-top: 50%;
+    border-radius: 10px;
+}
+
+.message {
+    width: 96%;
+    padding: 1%;
+}
+
+.message p {
+    margin: 0;
+    padding: 0
+}
+
+.message-details {
+    display: flex;
+    align-items: baseline;
+    font-size: large;
+}
+
+.message-details p {
+    font-size: x-small;
+    margin-left: 1%;
+    height: 100%;
+
+}
+
+.message-form-row {
+    width: 97%;
+    display: flex;
+    background-color: #222529;
+    color: #d1d2b9;
+    margin: 1% 0% 1% 1%;
+}
+
+.message-input-div {
+    width: 88%;
+    margin-right: 1%;
+}
+
+.message-input-div input {
+    width: 100%;
+    padding: 1%;
+    background-color: #222529;
+    color: #d1d2b9;
+    border: none;
+}
+
+.message-btn-div {
+    width: 8%;
+}
+
+.message-btn {
+    margin-left: 3%;
+    padding: 2%;
+    width: 49%;
+    height: 100%;
+    font-size: x-large;
+    border: none;
+    background-color: #222529;
+    color: #d1d2b9;
+}
+
+.message-btn:hover {
+    color: white;
+}
+
+.file-link {
+    text-decoration: none;
+    color: #d1d2b9;
+}
+
+.file-div {
+    border: 1px solid #d1d2b9;
+    width: fit-content;
+    min-width: 30%;
+    padding: 2%;
+    border-radius: 15px;
+}
+
+.file-div-row {
+    display: flex;
+}
+
+.file-detail-div {
+
+}
+
+.file-icon {
+    font-size: xx-large;
+    margin: 7px 7px 0px 0px;
+}
+
+.file-upload {
+    width: 49%;
+}
+
+.file-upload-btn {
+    width: 40%;
+    border: none;
+    color: #d1d2b9;
+    background-color: #222529;
+}
+
+.file-upload-icon {
+    font-size: xx-large;
+    cursor: pointer;
+}
+
+.file-upload-icon:hover {
+    color: white;
+}
+
+.room-name {
+    width: 50%;
+    display: flex;
+    align-items: baseline;
+}
+
+.private-room-head-btns {
+    font-size: larger;
+    width: 45%;
+    display: flex;
+    justify-content: end;
+}
+
+.head-icon {
+    margin: -15px 10px 0px 10px;
+    cursor: pointer;
+}
+
+.loader-modal {
+    position: absolute;
+    background-color: transparent;
+    width: fit-content;
+    z-index: 100;
+    background-color: white;
+    border-radius: 10px;
+    left: 50%;
+    bottom: 50%;                                                                          
+}
+
+.call-div {
+    width: 100%;
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background-color: black;
+    font-size: large;
+    font-weight: bold;
+    display: flex;
+    padding: 1% 0% 1% 10%;
+}
+
+.call-detail {
+    width: 80%;
+}
+
+.end-call {
+    width: 10%;
+}
+
+.end-call-btn {
+    background-color: red;
+    width: 90%;
+    color: white;
+    border: none;
+    padding: 2%;
+    border-radius: 10px;
+}
+
+.call-detail-accept {
+    width: 70%;
+}
+
+.accept-call {
+    width: 10%;
+}
+
+.accept-call-btn {
+    background-color: green;
+    width: 90%;
+    color: white;
+    border: none;
+    padding: 2%;
+    border-radius: 10px;
+}

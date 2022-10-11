@@ -1,0 +1,24 @@
+.signup-pic-div {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.signup-pic {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: 2px solid gray;
+    object-fit: cover;
+}
+
+.add-picture {
+    position: absolute;
+    bottom: 0;
+    right: 10px;
+    color: green;
+    background: white;
+    cursor: pointer;
+    z-index: 99;
+}

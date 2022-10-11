@@ -1,0 +1,159 @@
+.sidebar-div {
+    background-color: #19171d;
+    color: #929194;
+    height: 100%;
+    overflow-y: scroll;
+}
+
+.sidebar-div::-webkit-scrollbar {
+    display: none;
+}
+
+.sidebar-sub-div {
+    padding: 10% 0% 10% 2%;
+}
+
+.sidebar-sub-div h5 {
+    padding-left: 5%;
+}
+
+.sidebar-channel-head {
+    display: flex;
+    width: 100%;
+}
+
+.sidebar-channel-head h5 {
+    width: 85%;
+}
+
+.channel-plus-icon {
+    width: 10%;
+    cursor: pointer;
+}
+
+.channel-modal .modal-content {
+    background-color: #19171d;
+    color: white;
+}
+
+.list-group .active {
+    background-color: #1864a4;
+    color: white;
+    padding: 2% 3% 2% 5%;
+    display: flex;
+}
+
+.list-item {
+    display: flex;
+    padding: 2% 3% 2% 5%;
+}
+
+.list-item:hover {
+    background-color: #2a2f3d;
+}
+
+.list-img-status {
+    padding: 0% 3% 0% 0%;
+}
+
+.sidebar-online-status {
+    color: green;
+}
+
+.sidebar-offline-status {
+    color: #e3b505;
+}
+
+.sidebar-offline-status,
+.sidebar-online-status {
+    font-size: 11px;
+    position: relative;
+    z-index: 99;
+    top: 15px;
+    right: 8px;
+}
+
+
+/*  DROPDOWN  */
+
+.grouplist {
+    text-align: justify;
+    overflow-y: scroll;
+    height: fit-content;
+    max-height: 43vh;
+  }
+  .list-full {
+    max-height: 53px;
+    border-radius: 3px;
+    margin-bottom: 2px;
+  }
+  
+  .grouplist::-webkit-scrollbar {
+    width: 0.4em;
+  }
+  
+  .grouplist::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  }
+  
+  .grouplist::-webkit-scrollbar-thumb {
+    background-color: rgb(101, 96, 96);
+    outline: 1px solid slategrey;
+  }
+  
+  .dropdown_data {
+    height: 35vh;
+    width: 22vw;
+  }
+  
+  .dropdown__data {
+    height: auto;
+    max-height: 55vh;
+    overflow-y: scroll;
+    width: 14vw;
+  }
+  
+  .dropdown__data::-webkit-scrollbar {
+    width: 0.4em;
+  }
+  
+  .dropdown__data::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  }
+  
+  .dropdown__data::-webkit-scrollbar-thumb {
+    background-color: rgb(101, 96, 96);
+    outline: 1px solid slategrey;
+  }
+  
+  .field_input {
+    margin-left: 4vw;
+    width: 15vw;
+    height: 4vh;
+  }
+  
+  .name_label {
+    margin-left: 4vw;
+  }
+  
+  .add__user {
+    background-color: black;
+    padding: 0;
+    font-size: larger;
+  }
+  
+  .member-status-img2 {
+    width: 1.3vw;
+    height: 3vh;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+  .dropdown__add {
+    margin-top: 3.5vh;
+    margin-left: 4vw;
+  }
+  
+  .Create_group {
+    margin-top: 6vh;
+    margin-left: 5vw;
+  }

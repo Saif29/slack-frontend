@@ -1,0 +1,14 @@
+.chat {
+    width: 100%;
+    height: 93vh;
+    display: flex;
+    background-color: #181c28;
+}
+
+.chat-sidebar {
+    width: 17%;
+}
+
+.chat-message-form {
+    width: 83%;
+}
