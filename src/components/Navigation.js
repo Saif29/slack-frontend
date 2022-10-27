@@ -28,7 +28,7 @@ function Navigation() {
     const handleLogout = async (e) => {
         e.preventDefault();
         await logoutUser(user);
-        window.location.replace("/login");
+        // window.location.replace("/");
     };
 
     const handleEditProfile = () => {
