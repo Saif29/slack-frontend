@@ -51,6 +51,10 @@ function MessageForm() {
     const connectionRef = useRef();
 
     useEffect(() => {
+        socket.emit("save-socket", user.email);
+    }, [])
+
+    useEffect(() => {
         scrollToBottom();
     }, [messages]);
 
