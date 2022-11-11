@@ -40,6 +40,7 @@ function MessageForm() {
     const [isCall, setIsCall] = useState(false);
     const [callIncoming, setCallIncoming] = useState(false);
     const [isRinging, setIsRinging] = useState(false);
+    const [otherUserOnCall, setOtherUserOnCall] = useState(null);
 
     const [mySocket, setMySocket] = useState(null);
     const [otherSocket, setOtherSocket] = useState(null);
@@ -52,7 +53,7 @@ function MessageForm() {
 
     useEffect(() => {
         socket.emit("save-socket", user.email);
-    }, [])
+    }, []);
 
     useEffect(() => {
         scrollToBottom();
@@ -230,8 +231,11 @@ function MessageForm() {
 
     useEffect(() => {
         const getUserMedia = async () => {
-            const str = await navigator.mediaDevices.getUserMedia({video:false, audio: true});
-            setStream(str)
+            const str = await navigator.mediaDevices.getUserMedia({
+                video: false,
+                audio: true,
+            });
+            setStream(str);
             myVideo.current.srcObject = str;
 
             // await navigator.mediaDevices
@@ -247,24 +251,26 @@ function MessageForm() {
         });
 
         socket.off("call-user").on("call-user", (data) => {
+            setOtherUserOnCall(data.from);
             setCallIncoming(true);
-            setCaller(data.from);
+            setCaller(data.from_socket);
             setCallerSignal(data.signal);
         });
     }, []);
 
-    socket.off("get-socket").on("get-socket", () => {
-        socket.emit("send-socket", mySocket, currentRoom.name);
-    });
+    // socket.off("get-socket").on("get-socket", () => {
+    //     socket.emit("send-socket", mySocket, currentRoom.name);
+    // });
 
     const callTo = async (room, person) => {
         setIsRinging(true);
-        await socket.emit("get-socket", room.name);
-        let y = null;
-        await socket.off("other-socket").on("other-socket", (s) => {
-            setOtherSocket(s);
-            y = s;
-        });
+        setCaller(person.socket)
+        // await socket.emit("get-socket", person);
+        // let y = null;
+        // await socket.off("other-socket").on("other-socket", (s) => {
+        //     setOtherSocket(s);
+        //     y = s;
+        // });
         const peer = new Peer({
             initiator: true,
             trickle: false,
@@ -272,12 +278,10 @@ function MessageForm() {
         });
         peer.on("signal", (data) => {
             socket.emit("call-user", {
-                socketToCall: y,
                 userToCall: person,
                 signalData: data,
-                from: mySocket,
-                name: user.name,
-                room: room.name,
+                from_user: user,
+                from_socket: mySocket
             });
         });
         peer.on("stream", (stream) => {
@@ -321,7 +325,7 @@ function MessageForm() {
     });
 
     const leaveCall = () => {
-        socket.emit("end-call", currentRoom);
+        socket.emit("end-call", caller, mySocket);
     };
 
     return (
@@ -352,6 +356,9 @@ function MessageForm() {
                                     <div
                                         style={{ cursor: "pointer" }}
                                         onClick={() => {
+                                            setOtherUserOnCall(
+                                                privateMemberMsg
+                                            );
                                             callTo(
                                                 currentRoom,
                                                 privateMemberMsg
@@ -503,57 +510,6 @@ function MessageForm() {
             <div className="message-output">
                 {currentRoom.name != undefined ? (
                     <>
-                        {isCall && (
-                            <div className="call-div">
-                                <div className="call-detail">
-                                    Ongoing call...
-                                </div>
-                                <div className="end-call">
-                                    <button
-                                        className="end-call-btn"
-                                        onClick={leaveCall}
-                                    >
-                                        End Call
-                                    </button>
-                                </div>
-                            </div>
-                        )}
-                        {isRinging && (
-                            <div className="call-div">
-                                <div className="call-detail">Calling...</div>
-                                <div className="end-call">
-                                    <button
-                                        className="end-call-btn"
-                                        onClick={leaveCall}
-                                    >
-                                        End Call
-                                    </button>
-                                </div>
-                            </div>
-                        )}
-                        {callIncoming && (
-                            <div className="call-div">
-                                <div className="call-detail-accept">
-                                    Incoming Call
-                                </div>
-                                <div className="accept-call">
-                                    <button
-                                        className="accept-call-btn"
-                                        onClick={answerCall}
-                                    >
-                                        Accept
-                                    </button>
-                                </div>
-                                <div className="end-call">
-                                    <button
-                                        className="end-call-btn"
-                                        onClick={leaveCall}
-                                    >
-                                        Decline
-                                    </button>
-                                </div>
-                            </div>
-                        )}
                         {showLoader && (
                             <div className="loader-modal" show="true">
                                 <ColorRing
@@ -780,6 +736,61 @@ function MessageForm() {
                         </div>
                     </div>
                 </form>
+            )}
+            {isCall &&
+                (
+                    <Modal show={true} className="view-members-modal">
+                        <Modal.Body>
+                            <p style={{ fontSize: "25px" }}>
+                                On Call with {otherUserOnCall && otherUserOnCall.name}
+                            </p>
+                        </Modal.Body>
+                        <Modal.Footer>
+                            <button className="end-call-btn" onClick={leaveCall}>
+                                End Call
+                            </button>
+                        </Modal.Footer>
+                    </Modal>
+                )}
+            {isRinging && (
+                <Modal show={true} className="view-members-modal">
+                    <Modal.Body>
+                        <p style={{ fontSize: "25px" }}>
+                            Calling {otherUserOnCall && otherUserOnCall.name}
+                        </p>
+                    </Modal.Body>
+                    <Modal.Footer>
+                        <button className="end-call-btn" onClick={leaveCall}>
+                            End Call
+                        </button>
+                    </Modal.Footer>
+                </Modal>
+            )}
+            {callIncoming && (
+                <Modal show={true} className="view-members-modal">
+                    <Modal.Body>
+                        <p style={{ fontSize: "25px" }}>
+                            {otherUserOnCall && otherUserOnCall.name} is
+                            calling...
+                        </p>
+                    </Modal.Body>
+                    <Modal.Footer>
+                        <div className="call-detail-accept">
+                            <button
+                                className="accept-call-btn"
+                                onClick={answerCall}
+                            >
+                                Accept
+                            </button>
+                            <button
+                                className="end-call-btn"
+                                onClick={leaveCall}
+                            >
+                                Decline
+                            </button>
+                        </div>
+                    </Modal.Footer>
+                </Modal>
             )}
         </div>
     );

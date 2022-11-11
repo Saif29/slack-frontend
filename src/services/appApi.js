@@ -1,9 +1,10 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import { baseDomain } from "../baseDomain";
 
 const appApi = createApi({
     reducerPath: "appApi",
     baseQuery: fetchBaseQuery({
-        baseUrl: "https://slack-clone1.herokuapp.com/",
+        baseUrl: baseDomain(),
     }),
     endpoints: (builder) => ({
         signupUser: builder.mutation({

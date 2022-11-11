@@ -7,6 +7,7 @@ import { useState } from "react";
 import { AppContext, socket } from "./context/appContext";
 import EditProfile from "./pages/EditProfile";
 import NotFound from "./pages/NotFound";
+import { baseDomain } from "./baseDomain";
 
 function App() {
     const [rooms, setRooms] = useState([]);

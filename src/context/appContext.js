@@ -1,7 +1,8 @@
 import { io } from "socket.io-client";
 import React from "react";
+import { baseDomain } from "../baseDomain";
 
-const SOCKET_URL = "https://slack-clone1.herokuapp.com/";
+const SOCKET_URL = baseDomain();
 
 export const socket = io(SOCKET_URL);
 
