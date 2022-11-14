@@ -325,7 +325,12 @@ function MessageForm() {
     });
 
     const leaveCall = () => {
-        socket.emit("end-call", caller, mySocket);
+        console.log("testt", caller)
+        setIsCall(false);
+        setIsRinging(false);
+        setCallIncoming(false);
+        alert("Call Ended!");
+        socket.emit("end-call", caller);
     };
 
     return (
@@ -350,7 +355,7 @@ function MessageForm() {
                                             height: "35px",
                                         }}
                                     />{" "}
-                                    {privateMemberMsg.name}
+                                    {privateMemberMsg.name}<span style={{fontSize: "10px"}}>{privateMemberMsg.socket}</span>
                                 </div>
                                 {user._id !== privateMemberMsg._id && (
                                     <div
