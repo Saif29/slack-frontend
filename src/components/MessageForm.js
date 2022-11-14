@@ -355,7 +355,7 @@ function MessageForm() {
                                             height: "35px",
                                         }}
                                     />{" "}
-                                    {privateMemberMsg.name}<span style={{fontSize: "10px"}}>{privateMemberMsg.socket}</span>
+                                    {privateMemberMsg.name}
                                 </div>
                                 {user._id !== privateMemberMsg._id && (
                                     <div
